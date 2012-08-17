@@ -16,7 +16,7 @@ module Connections  =
     open Microsoft.FSharp.Data.TypeProviders
 
     // You can use Server Explorer to build your ConnectionString.Data Source=IRON;Initial Catalog=borkdorkfork;Integrated Security=True
-    type  internal dbSchema = Microsoft.FSharp.Data.TypeProviders.SqlDataConnection<"Data Source=IRON;Initial Catalog=borkdorkfork;Integrated Security=True">
+    type  internal dbSchema = Microsoft.FSharp.Data.TypeProviders.SqlDataConnection<ConnectionString = @"Data Source=IRON;Initial Catalog=borkdorkfork;Integrated Security=True">
     let internal db = dbSchema.GetDataContext()
 
     // catching category_id and category_link from dataBase
