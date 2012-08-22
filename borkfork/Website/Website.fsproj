@@ -44,6 +44,7 @@
     <Compile Include="ParsePosaohr.fs" />
     <Compile Include="StoneMiner.fs" />
     <Compile Include="FlowControl.fs" />
+    <Compile Include="Clock.fs" />
     <Compile Include="Site.fs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +57,9 @@
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="IntelliFactory.WebSharper.KendoUI">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\IntelliFactory\WebSharper\Extensions\WebSharper Extensions for Kendo UI\IntelliFactory.WebSharper.KendoUI.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />

@@ -11,7 +11,7 @@ type Action =
     | About
 
     //tralala
-
+    
 module Skin =
     open System.Web
 
@@ -34,7 +34,7 @@ module Skin =
             .With("title", fun x -> x.Title)
             .With("body", fun x -> x.Body)
 
-    let WithTemplate title body : Content<Action> =
+    let WithTemplate title body: Content<Action> =
         Content.WithTemplate MainTemplate <| fun context ->
             {
                 Title = title
@@ -62,19 +62,58 @@ module Site =
                 
     let JobsPage = 
         Skin.WithTemplate "Jobs" <| fun ctx ->
-            
-                  [  
-                      let items = FilterJobs.filterItems()
-                      for i in items -> 
+
+                      
+//                      <div class="spa-shell-modal">
+//                    <div id="content">
+//                        <div id="jobs-content">
+//                            <div id="jobslist" class="main">
+//                                <div data-hole="body">
+//            Div [Class "spa-shell-modal"] -< 
+//                [
+//                Div [Id "content"] -< 
+//                    [
+//                        Div [Id "jobs-content"] -< 
+//                        [ 
+//                            Div [Id "jobslist"] -< 
+//                            [ 
+                  [
+                    Div [Class "spa-shell-main-content"] -< 
+                    [  
+                      Div [Class "spa-shell-modal"] -< 
+                      [
+                        let items = FilterJobs.filterItems()
+                        for i in items -> 
                         Div [Class "job"] -< 
                         [ 
-                         A [Class "title"]       -< [HRef i.[1]] -< [ Text i.[0]] 
-                         P [Class "posted top"]  -< [ Text i.[4] ]
-                         P [Class "location"]    -< [ Text i.[3] ]
-                         P [Class "employer"]    -< [ Text i.[2] ]
-                         ]
+                                A [Class "title"]       -< [HRef i.[1]] -< [ Text i.[0]] 
+                                P [Class "posted top"]  -< [ Text i.[4] ]
+                                P [Class "location"]    -< [ Text i.[3] ]
+                                P [Class "employer"]    -< [ Text i.[2] ]
+                        ]
+                      ]
                     ]
-                        
+                      
+                    Div [Class "spa-shell-main-nav"] -< 
+                    [ 
+                        new KendoUIChartingViewer()
+                    ]
+                ]
+
+      
+
+      /// A sidebar
+    let ClockPage : Content<Action> =
+            Skin.WithTemplate "Clock" <| fun ctx ->
+           
+                       [
+                           Div [Class "spa-shell-main-nav"] -< 
+                        [ 
+                           new KendoUIChartingViewer()
+                        ]
+                ]
+
+                    
      
     let AboutPage =
         Skin.WithTemplate "AboutPage" <| fun ctx ->
@@ -84,10 +123,10 @@ module Site =
             ]
 
     let Main =
-        pullData.FlowControl.updateDb();
+        // pullData.FlowControl.updateDb();
         Sitelet.Sum [
-            Sitelet.Content "/" Home JobsPage
-            Sitelet.Content "/About" About AboutPage
+            Sitelet.Content "/" Home JobsPage //ClockPage
+            //Sitelet.Content "/About" About AboutPage
         ]
 
 type Website() =
