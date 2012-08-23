@@ -11,7 +11,7 @@ open Commons
 open HtmlAgilityPack
 
     (*
-         #r "C:\Users\clarksdale\Desktop\Net45\HtmlAgilityPack.dll"
+         #r "C:\Users\clarksdale\Desktop\HtmlAgilityPack.1.4.6\Net40\HtmlAgilityPack.dll"
          #r "FSharp.PowerPack.dll";; 
          #r "FSharp.PowerPack.Compatibility.dll";;
     *)
@@ -90,7 +90,9 @@ module ParseMojPosaoNet =
                       Poslodavac   = i.[2],
                       Mjesto_rada   = i.[3],
                       Id_category   = 2L,
-                      Rok_za_prijavu = i.[4]
+                      Rok_za_prijavu = i.[4],
+                      Time_of_appereance = System.DateTime.Now
+
                       )
                     )
                 try

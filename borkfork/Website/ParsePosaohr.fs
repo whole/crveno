@@ -1,6 +1,7 @@
 ﻿namespace Parsing 
 
 open System.Collections
+open System.Text.RegularExpressions
 
 open System.Xml
 open System.Linq
@@ -9,7 +10,8 @@ open System.Xml.Linq
 open borkData
 
 module ParsePosaohr =
-   
+    let items = Connections.pullRawData()
+    let rawData = Seq.head items
     let xn s = XName.Get(s)
 
     let main rawData = 
@@ -27,7 +29,6 @@ module ParsePosaohr =
                 primjer:   "Poslodavac: CERP - Centar za racunalnu podršku
                 <div>Mjesto rada: Zagreb</div><div>Rok za prijavu: 15.08.2012.</div>"
              *)
-    open System.Text.RegularExpressions
     let splitDescription (s: string) = 
         let splitedString = Regex.Split( s.Replace("</div>", ""), @"<div>")
         [ (splitedString.[0].Split(':')).[1];
@@ -45,6 +46,7 @@ module ParsePosaohr =
                             Poslodavac   = (splitDescription (i.Element(xn "description").Value)).[0],
                             Mjesto_rada   = (splitDescription (i.Element(xn "description").Value)).[1],
                             Rok_za_prijavu = (splitDescription (i.Element(xn "description").Value)).[2],
+                            Time_of_appereance = System.DateTime.Now,
                             Id_category = fst items )
                         )
                      try

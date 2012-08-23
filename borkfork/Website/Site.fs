@@ -107,10 +107,10 @@ module Site =
             Skin.WithTemplate "Clock" <| fun ctx ->
            
                        [
-                           Div [Class "spa-shell-main-nav"] -< 
-                        [ 
+                        Div [Class "spa-shell-main-nav"] -< 
+                         [ 
                            new KendoUIChartingViewer()
-                        ]
+                         ]
                 ]
 
                     
@@ -124,6 +124,7 @@ module Site =
 
     let Main =
         // pullData.FlowControl.updateDb();
+        let r = StoneMiner.Charts.matchQuery()
         Sitelet.Sum [
             Sitelet.Content "/" Home JobsPage //ClockPage
             //Sitelet.Content "/About" About AboutPage

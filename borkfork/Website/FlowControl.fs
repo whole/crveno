@@ -35,6 +35,6 @@ module FlowControl =
                         Connections.pushRawData()
                         chooseParser()
                            
-                        Timer.updateTime()
+//                        Timer.updateTime()
                     
             
